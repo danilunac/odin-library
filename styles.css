@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    justify-content: center;
+    background: linear-gradient(white, lightslategrey);
+}
+
+.library {
+    display: grid;
+    align-content: start;
+    text-align: center;
+    min-width: 700px;
+    margin: 40px;
+}
+
+.library h1 {
+    margin-bottom: 15px;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px;
+}
+
+.book-card {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 15px;
+    line-height: 1.5;
+    text-align: start;
+}
+
+.book-card:hover {
+    box-shadow: 0 2px 4px steelblue;
+}
