@@ -29,30 +29,54 @@ function Book(id, author, title, genre, pages, read = false) {
     this.read = read;
 }
 
-// function addBookToLibrary(author, title, genre, pages) {
-//     const id = crypto.randomUUID();
-//     const book = new Book(id, author, title, genre, pages);
-//     myLibrary.push(book);
-// }
+function addBookToLibrary(title, author, genre, pages) {
+    const id = crypto.randomUUID();
+    const book = new Book(id, author, title, genre, pages);
+    myLibrary.push(book);
+}
 
-// addBookToLibrary("Stefan Zweig", "El mundo de ayer", "Biografía", 890);
-// addBookToLibrary("George Orwell", "1984", "Novela", 400);
-// console.log(myLibrary);
+addBookToLibrary("El mundo de ayer", "Stefan Zweig", "Biografía", 890);
+addBookToLibrary("1984", "George Orwell", "Novela", 400);
 
-// const books = document.querySelector('.books');
-// console.log(books);
+const books = document.querySelector('.books-grid');
 
-// function renderLibrary() {
-//     for (let book of myLibrary) {
-//         const newBook = document.createElement('div');
-//         const title = document.createElement('h4');
-//         const author = document.createElement('p');
-//         title.textContent = book.title;
-//         author.textContent = book.author;
-//         newBook.append(title);
-//         newBook.append(author);
-//         books.append(newBook);
-//     }
-// }
+function renderLibrary() {
+    books.textContent = '';
+    for (let book of myLibrary) {
+        const newBook = document.createElement('div');
+        newBook.classList.add('book-card');
+        const title = document.createElement('h4');
+        const author = document.createElement('p');
+        const genre = document.createElement('p');
+        const pages = document.createElement('p');
+        const read = document.createElement('p');
+        const deleteBtn = document.createElement('button');
+        title.textContent = book.title;
+        author.textContent = book.author;
+        genre.textContent = book.genre;
+        pages.textContent = book.pages;
+        read.textContent = book.read;
+        deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>trash-can</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>'
+        newBook.append(title);
+        newBook.append(author);
+        newBook.append(genre);
+        newBook.append(pages);
+        newBook.append(read);
+        newBook.append(deleteBtn);
+        books.append(newBook);
+    }
+}
 
-// renderLibrary();
+renderLibrary();
+
+const addBookForm = document.querySelector('.form-books');
+addBookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let bookTitle = document.querySelector('#book_title').value;
+    let bookAuthor = document.querySelector('#book_author').value;
+    let bookGenre = document.querySelector('#book_genre').value;
+    let bookPages = document.querySelector('#book_pages').value;
+    addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages);
+    renderLibrary();
+    addBookForm.reset();
+});

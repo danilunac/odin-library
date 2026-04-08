@@ -18,20 +18,30 @@
                     <p>800 págs</p>
                     <p>Leído</p>
                 </div>
-                <div class="book-card">
-                    <h4>Oliver Twist</h4>
-                    <p>Charles Dickens</p>
-                    <p>Novela</p>
-                    <p>1200 págs</p>
-                    <p>No leído</p>
-                </div>
-                <div class="book-card">
-                    <h4>El mundo de ayer</h4>
-                    <p>Stefan Zweig</p>
-                    <p>Biografía</p>
-                    <p>950 págs</p>
-                    <p>Leído</p>
-                </div>
+            </div>
+            <div class="books-sidebar">
+                <form action="index.html" class="form-books" method="post">
+                    <fieldset>
+                        <legend class="form-legend">Add book</legend>
+                        <div class="form-row">
+                            <label class="form-label" for="book_title">Title</label>
+                            <input class="form-input" id="book_title" type="text">
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="book_author">Author</label>
+                            <input class="form-input" id="book_author" type="text">
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="book_genre">Genre</label>
+                            <input class="form-input" id="book_genre" type="text">
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="book_pages">Pages</label>
+                            <input class="form-input" id="book_pages" type="number">
+                        </div>
+                        <button class="form-btn">Save</button>
+                    </fieldset>
+                </form>
             </div>
         </div>
         <script src="script.js"></script>
