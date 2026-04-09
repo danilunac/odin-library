@@ -1,21 +1,4 @@
-const myLibrary = [
-    {
-        id: 1,
-        author: 'Gabriel García Márquez',
-        title: 'Cien años de soledad',
-        genre: 'Novela',
-        pages: 700,
-        read: true
-    }, 
-    {
-        id: 2,
-        author: 'Pedro Salinas',
-        title: 'La voz a ti debida',
-        genre: 'Poesía',
-        pages: 200,
-        read: true
-    }
-];
+let myLibrary = [];
 
 function Book(id, author, title, genre, pages, read = false) {
     if (!new.target) {
@@ -35,6 +18,11 @@ function addBookToLibrary(title, author, genre, pages) {
     myLibrary.push(book);
 }
 
+function deleteBookToLibrary(id) {
+    myLibrary = myLibrary.filter(book => book.id !== id)
+    renderLibrary();
+}
+
 addBookToLibrary("El mundo de ayer", "Stefan Zweig", "Biografía", 890);
 addBookToLibrary("1984", "George Orwell", "Novela", 400);
 
@@ -45,12 +33,14 @@ function renderLibrary() {
     for (let book of myLibrary) {
         const newBook = document.createElement('div');
         newBook.classList.add('book-card');
+        newBook.dataset.id = book.id;
         const title = document.createElement('h4');
         const author = document.createElement('p');
         const genre = document.createElement('p');
         const pages = document.createElement('p');
         const read = document.createElement('p');
         const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-book');
         title.textContent = book.title;
         author.textContent = book.author;
         genre.textContent = book.genre;
@@ -64,6 +54,7 @@ function renderLibrary() {
         newBook.append(read);
         newBook.append(deleteBtn);
         books.append(newBook);
+        console.log(book);
     }
 }
 
@@ -98,3 +89,10 @@ addBookForm.addEventListener('submit', (e) => {
         addBookForm.reset();
     }
 });
+
+books.addEventListener('click', (e) => {
+    const deleteBook = e.target.closest('.delete-book');
+    const bookCard = e.target.closest('.book-card');
+    if (!deleteBook || !bookCard) return;
+    deleteBookToLibrary(bookCard.dataset.id);
+})
