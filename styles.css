@@ -41,12 +41,11 @@ body {
     padding: 10px 15px;
     line-height: 1.5;
     text-align: start;
-
-    display: flex;
-    flex-direction: column;
 }
 
 .book-card {
+    display: flex;
+    flex-direction: column;
     gap: 5px;
 }
 
@@ -62,6 +61,14 @@ body {
 
 .book-card button {
     padding: 3px 10px 2px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-card button:active {
+    transform: scale(0.98);
 }
 
 .books-sidebar {
@@ -70,6 +77,9 @@ body {
 
 fieldset {
     border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .form-legend {
@@ -80,7 +90,6 @@ fieldset {
 .form-row {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
 }
 
 .form-input {
@@ -89,7 +98,14 @@ fieldset {
     border-radius: 5px;
 }
 
-.form-btn {
+button.form-btn {
     margin: 10px 0;
     padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.form-btn:active {
+    transform: scale(0.98);
 }

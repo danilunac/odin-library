@@ -69,14 +69,32 @@ function renderLibrary() {
 
 renderLibrary();
 
+function isValidBook ({ title, author, genre, pages }) {
+    return (
+        title.trim() !== '' && 
+        author.trim() !== '' && 
+        genre.trim() !== '' && 
+        pages.trim() !== ''
+    );
+}
+
 const addBookForm = document.querySelector('.form-books');
 addBookForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    let bookTitle = document.querySelector('#book_title').value;
-    let bookAuthor = document.querySelector('#book_author').value;
-    let bookGenre = document.querySelector('#book_genre').value;
-    let bookPages = document.querySelector('#book_pages').value;
-    addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages);
-    renderLibrary();
-    addBookForm.reset();
+
+    const bookTitle = document.querySelector('#book_title').value;
+    const bookAuthor = document.querySelector('#book_author').value;
+    const bookGenre = document.querySelector('#book_genre').value;
+    const bookPages = document.querySelector('#book_pages').value;
+
+    if (isValidBook({
+        title: bookTitle, 
+        author: bookAuthor, 
+        genre: bookGenre, 
+        pages: bookPages
+    })) {
+        addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages);
+        renderLibrary();
+        addBookForm.reset();
+    }
 });
