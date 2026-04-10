@@ -28,7 +28,7 @@ body {
 .books-grid {
     grid-column: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
     grid-auto-rows: auto;
     gap: 15px;
     margin: 20px;
@@ -54,21 +54,50 @@ body {
     box-shadow: 0 2px 4px steelblue;
 }
 
+.book-card-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card-row:not(:nth-last-child(2)) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 5px;
+}
+
+.book-card-row span {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.book-buttons {
+    display: flex;
+    gap: 5px;
+}
+
 .book-card svg {
     width: 15px;
     height: 15px;
 }
 
 .book-card button {
-    padding: 3px 10px 2px;
+    padding: 5px 5px;
     margin: 10px 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    flex: 1;
 }
 
 .book-card button:active {
     transform: scale(0.98);
+}
+
+.book-read {
+    font-size: 0.7rem;
+}
+
+.book-read svg {
+    fill: green;
 }
 
 .books-sidebar {

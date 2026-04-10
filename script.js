@@ -23,8 +23,7 @@ function deleteBookToLibrary(id) {
     renderLibrary();
 }
 
-addBookToLibrary("El mundo de ayer", "Stefan Zweig", "Biografía", 890);
-addBookToLibrary("1984", "George Orwell", "Novela", 400);
+addBookToLibrary("Darkest Hour", "Anthony McCarten", "History", 108);
 
 const books = document.querySelector('.books-grid');
 
@@ -34,25 +33,68 @@ function renderLibrary() {
         const newBook = document.createElement('div');
         newBook.classList.add('book-card');
         newBook.dataset.id = book.id;
-        const title = document.createElement('h4');
+        const titleContainer = document.createElement('div');
+        titleContainer.classList.add('book-card-row');
+        const titleLabel = document.createElement('span');
+        const title = document.createElement('p');
+        const authorContainer = document.createElement('div');
+        authorContainer.classList.add('book-card-row');
+        const authorLabel = document.createElement('span');
         const author = document.createElement('p');
+        const genreContainer = document.createElement('div');
+        genreContainer.classList.add('book-card-row');
+        const genreLabel = document.createElement('span');
         const genre = document.createElement('p');
+        const pagesContainer = document.createElement('div');
+        pagesContainer.classList.add('book-card-row');
+        const pagesLabel = document.createElement('span');
         const pages = document.createElement('p');
+        const readContainer = document.createElement('div');
+        readContainer.classList.add('book-card-row');
+        const readLabel = document.createElement('span');
         const read = document.createElement('p');
+        const buttons = document.createElement('div');
+        buttons.classList.add('book-buttons')
+        const readBtn = document.createElement('button');
+        readBtn.classList.add('book-read');
         const deleteBtn = document.createElement('button');
-        deleteBtn.classList.add('delete-book');
+        deleteBtn.classList.add('book-delete');
+        titleLabel.textContent = 'Title';
         title.textContent = book.title;
+        authorLabel.textContent = 'Author';
         author.textContent = book.author;
+        genreLabel.textContent = 'Genre';
         genre.textContent = book.genre;
+        pagesLabel.textContent = 'Pages';
         pages.textContent = book.pages;
-        read.textContent = book.read;
+        readLabel.textContent = 'Status'
+        read.textContent = book.read ? 'Read' : 'Unread';
+        // read.textContent = book.read;
+        readBtn.textContent = 'Mark as read'
         deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>trash-can</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>'
-        newBook.append(title);
-        newBook.append(author);
-        newBook.append(genre);
-        newBook.append(pages);
-        newBook.append(read);
-        newBook.append(deleteBtn);
+        titleContainer.append(titleLabel);
+        titleContainer.append(title);
+        authorContainer.append(authorLabel);
+        authorContainer.append(author);
+        genreContainer.append(genreLabel);
+        genreContainer.append(genre);
+        pagesContainer.append(pagesLabel);
+        pagesContainer.append(pages);
+        readContainer.append(readLabel);
+        readContainer.append(read);
+        buttons.append(readBtn);
+        buttons.append(deleteBtn);
+        // newBook.append(title);
+        newBook.append(titleContainer);
+        newBook.append(authorContainer);
+        newBook.append(genreContainer);
+        newBook.append(pagesContainer);
+        newBook.append(readContainer);
+        // newBook.append(author);
+        // newBook.append(genre);
+        // newBook.append(pages);
+        // newBook.append(read);
+        newBook.append(buttons);
         books.append(newBook);
         console.log(book);
     }
@@ -91,7 +133,7 @@ addBookForm.addEventListener('submit', (e) => {
 });
 
 books.addEventListener('click', (e) => {
-    const deleteBook = e.target.closest('.delete-book');
+    const deleteBook = e.target.closest('.book-delete');
     const bookCard = e.target.closest('.book-card');
     if (!deleteBook || !bookCard) return;
     deleteBookToLibrary(bookCard.dataset.id);
