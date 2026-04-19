@@ -74,7 +74,9 @@ function renderLibrary() {
         pages.textContent = book.pages;
         readLabel.textContent = 'Status'
         read.textContent = book.read ? 'Read' : 'Unread';
-        readBtn.textContent = book.read ? 'Unread' : 'Read';
+        readBtn.textContent = book.read ? 'Mark Unread' : 'Mark Read';
+        readBtn.classList.toggle('read', book.read);
+        readBtn.classList.toggle('unread', !book.read);
         deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>trash-can</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>'
         titleContainer.append(titleLabel);
         titleContainer.append(title);

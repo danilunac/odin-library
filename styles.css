@@ -95,10 +95,15 @@ body {
 
 .book-read {
     font-size: 0.7rem;
+    white-space: nowrap;
 }
 
-.book-read svg {
-    fill: green;
+.book-read.read {
+    color: red;
+}
+
+.book-read.unread {
+    color: green;
 }
 
 .books-sidebar {
