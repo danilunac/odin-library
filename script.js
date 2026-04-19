@@ -12,13 +12,18 @@ function Book(id, author, title, genre, pages, read = false) {
     this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+    renderLibrary();
+};
+
 function addBookToLibrary(title, author, genre, pages) {
     const id = crypto.randomUUID();
     const book = new Book(id, author, title, genre, pages);
     myLibrary.push(book);
 }
 
-function deleteBookToLibrary(id) {
+function removeBook(id) {
     myLibrary = myLibrary.filter(book => book.id !== id)
     renderLibrary();
 }
@@ -69,8 +74,7 @@ function renderLibrary() {
         pages.textContent = book.pages;
         readLabel.textContent = 'Status'
         read.textContent = book.read ? 'Read' : 'Unread';
-        // read.textContent = book.read;
-        readBtn.textContent = 'Mark as read'
+        readBtn.textContent = book.read ? 'Unread' : 'Read';
         deleteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>trash-can</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>'
         titleContainer.append(titleLabel);
         titleContainer.append(title);
@@ -84,19 +88,13 @@ function renderLibrary() {
         readContainer.append(read);
         buttons.append(readBtn);
         buttons.append(deleteBtn);
-        // newBook.append(title);
         newBook.append(titleContainer);
         newBook.append(authorContainer);
         newBook.append(genreContainer);
         newBook.append(pagesContainer);
         newBook.append(readContainer);
-        // newBook.append(author);
-        // newBook.append(genre);
-        // newBook.append(pages);
-        // newBook.append(read);
         newBook.append(buttons);
         books.append(newBook);
-        console.log(book);
     }
 }
 
@@ -133,8 +131,14 @@ addBookForm.addEventListener('submit', (e) => {
 });
 
 books.addEventListener('click', (e) => {
-    const deleteBook = e.target.closest('.book-delete');
     const bookCard = e.target.closest('.book-card');
-    if (!deleteBook || !bookCard) return;
-    deleteBookToLibrary(bookCard.dataset.id);
+    const deleteBtn = e.target.closest('.book-delete');
+    const readBtn = e.target.closest('.book-read');
+    if (!bookCard) return;
+        if (deleteBtn) {
+            removeBook(bookCard.dataset.id);
+        } else if (readBtn) {
+            const book = myLibrary.find(val => val.id === bookCard.dataset.id);
+            book.toggleRead();
+        }
 })

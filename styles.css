@@ -72,6 +72,7 @@ body {
 .book-buttons {
     display: flex;
     gap: 5px;
+    margin-top: auto;
 }
 
 .book-card svg {
