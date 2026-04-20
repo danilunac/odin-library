@@ -14,7 +14,6 @@ function Book(id, author, title, genre, pages, read = false) {
 
 Book.prototype.toggleRead = function() {
     this.read = !this.read;
-    renderLibrary();
 };
 
 function addBookToLibrary(title, author, genre, pages) {
@@ -142,5 +141,6 @@ books.addEventListener('click', (e) => {
         } else if (readBtn) {
             const book = myLibrary.find(val => val.id === bookCard.dataset.id);
             book.toggleRead();
+            renderLibrary();
         }
 })

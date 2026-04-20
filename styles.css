@@ -8,7 +8,7 @@ body {
     display: grid;
     min-height: 100vh;
     justify-content: center;
-    background: linear-gradient(white, lightslategrey);
+    background: #e7e7e7;
 }
 
 .library {
@@ -17,12 +17,15 @@ body {
     align-content: start;
     align-items: start;
     text-align: center;
-    min-width: 950px;
-    margin: 40px;
+    min-width: 1000px;
+    margin: 0 40px;
+    padding: 40px 40px;
+    background-color: white;
+    min-height: 100vh;
 }
 
 .library h1 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .books-grid {
@@ -36,9 +39,9 @@ body {
 
 .book-card,
 .form-books {
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 5px;
-    padding: 10px 15px;
+    padding: 15px 15px;
     line-height: 1.5;
     text-align: start;
 }
@@ -51,7 +54,7 @@ body {
 
 .book-card:hover,
 .form-books:hover {
-    box-shadow: 0 2px 4px steelblue;
+    box-shadow: 0 2px 4px #4f9e72;
 }
 
 .book-card-row {
@@ -78,15 +81,17 @@ body {
 .book-card svg {
     width: 15px;
     height: 15px;
+    fill: red;
 }
 
 .book-card button {
     padding: 5px 5px;
     margin: 10px 0;
-    border: none;
+    border: 1px solid grey;
     border-radius: 5px;
     cursor: pointer;
     flex: 1;
+    background-color: lightgrey;
 }
 
 .book-card button:active {
@@ -129,16 +134,24 @@ fieldset {
 
 .form-input {
     padding: 5px;
-    border: none;
+    border: 1px solid grey;
     border-radius: 5px;
+    background-color: rgba(196, 196, 196, 0.5)
+}
+
+.form-input:focus {
+    outline: 1px solid #4f9e72;
 }
 
 button.form-btn {
     margin: 10px 0;
-    padding: 5px 10px;
-    border: none;
+    padding: 5px 5px;
+    border: 1px solid grey;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #4f9e72;
+    color: white;
+    line-height: 1.5;
 }
 
 button.form-btn:active {
