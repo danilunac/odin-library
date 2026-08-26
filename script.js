@@ -1,24 +1,23 @@
 let myLibrary = [];
 
-function Book(id, author, title, genre, pages, read = false) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor")
-    }    
-    this.id = id;
-    this.author = author;
-    this.title = title;
-    this.genre = genre;
-    this.pages = pages;
-    this.read = read;
-}
+class Book {
+    constructor(id, title, author, genre, pages, read = false) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.pages = pages;
+        this.read = read;
+    }
 
-Book.prototype.toggleRead = function() {
-    this.read = !this.read;
-};
+    toggleRead() {
+        this.read = !this.read;
+    }
+}
 
 function addBookToLibrary(title, author, genre, pages) {
     const id = crypto.randomUUID();
-    const book = new Book(id, author, title, genre, pages);
+    const book = new Book(id, title, author, genre, pages);
     myLibrary.push(book);
 }
 
@@ -75,9 +74,9 @@ renderLibrary();
 
 function isValidBook ({ title, author, genre, pages }) {
     return (
-        title.trim() !== '' && 
-        author.trim() !== '' && 
-        genre.trim() !== '' && 
+        title.trim() !== '' &&
+        author.trim() !== '' &&
+        genre.trim() !== '' &&
         pages.trim() !== ''
     );
 }
@@ -92,9 +91,9 @@ addBookForm.addEventListener('submit', (e) => {
     const bookPages = document.querySelector('#book_pages').value;
 
     if (isValidBook({
-        title: bookTitle, 
-        author: bookAuthor, 
-        genre: bookGenre, 
+        title: bookTitle,
+        author: bookAuthor,
+        genre: bookGenre,
         pages: bookPages
     })) {
         addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages);
